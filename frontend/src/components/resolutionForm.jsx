@@ -118,10 +118,11 @@ function ResolutionForm({ onSuccess, title = 'Add Resolution', description = 'Pa
               Date Docketed *
             </label>
             <input
-              type="date"
+              type="text"
               id="dateDocketed"
               name="dateDocketed"
               className="form-input"
+              placeholder="MM-DD-YYY"
               value={formData.dateDocketed}
               onChange={handleChange}
               required
@@ -133,10 +134,11 @@ function ResolutionForm({ onSuccess, title = 'Add Resolution', description = 'Pa
               Date Published *
             </label>
             <input
-              type="date"
+              type="text"
               id="datePublished"
               name="datePublished"
               className="form-input"
+              placeholder="MM-DD-YYY"
               value={formData.datePublished}
               onChange={handleChange}
               required

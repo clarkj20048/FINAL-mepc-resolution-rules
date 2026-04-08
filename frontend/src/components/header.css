@@ -103,6 +103,7 @@
   background: transparent;
   border: none;
   font-weight: 400;
+  font-family: inherit;
   cursor: pointer;
 }
 
@@ -170,22 +171,24 @@
 
 .header-modal-close {
   position: absolute;
-  top: 0.85rem;
-  right: 0.95rem;
-  width: 36px;
-  height: 36px;
-  border: none;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
+  top: 1rem;
+  right: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
   color: #ffffff;
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   line-height: 1;
+  padding: 0.45rem 0.65rem;
   cursor: pointer;
   z-index: 2;
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .header-modal-close:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.22);
+  transform: translateY(-1px);
 }
 
 .resolution-form-modal {
