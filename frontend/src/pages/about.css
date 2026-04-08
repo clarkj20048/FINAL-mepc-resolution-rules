@@ -1,0 +1,331 @@
+/* About Page Styles - Energy News Updates */
+
+.about-container {
+  min-height: calc(100vh - 80px);
+  background: linear-gradient(135deg, #1a472a 0%, #0d2818 100%);
+  padding: 2rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated Background */
+.about-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(45, 90, 61, 0.4) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(61, 107, 79, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(74, 124, 92, 0.2) 0%, transparent 40%);
+  animation: aurora 15s ease infinite;
+  z-index: 0;
+}
+
+.about-content {
+  max-width: 980px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* LEFT SIDE — LOGO */
+.about-logo {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 1rem;
+  animation: fadeInLeft 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.about-logo img {
+  max-width: 330px;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
+  animation: float 6s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+.about-logo img:hover {
+  transform: translateY(-1px);
+  filter: drop-shadow(0 15px 40px rgba(76, 175, 80, 0.3));
+}
+
+/* RIGHT SIDE — TEXT */
+.about-text {
+  flex: 1;
+  max-width: 520px;
+  padding-left: 10rem;
+  animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.3s;
+  opacity: 0;
+}
+
+.about-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.4s;
+  opacity: 0;
+}
+
+.about-description {
+  font-size: 1rem;
+  color: #e8f5e9;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  animation: fadeInUp 0.8s forwards;
+  animation-delay: 0.5s;
+  opacity: 0;
+}
+
+.about-cta {
+  display: inline-block;
+  background-color: #4caf50;
+  color: #ffffff;
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.6s;
+  opacity: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.about-cta:hover {
+  background-color: #66bb6a;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.26), 0 0 14px rgba(76, 175, 80, 0.3);
+}
+
+.about-cta:hover::before {
+  left: 100%;
+}
+
+/* Animation Keyframes */
+
+/* Fade In */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Fade In Up */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade In Left */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Fade In Right */
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Aurora Background Animation */
+@keyframes aurora {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(2%, 2%) rotate(1deg);
+  }
+  50% {
+    transform: translate(0, 4%) rotate(0deg);
+  }
+  75% {
+    transform: translate(-2%, 2%) rotate(-1deg);
+  }
+}
+
+/* Float Animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .about-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .about-text {
+    max-width: 100%;
+  }
+
+  .about-title {
+    font-size: 1.8rem;
+  }
+
+  .about-description {
+    font-size: 0.95rem;
+  }
+
+  .about-logo {
+    justify-content: center;
+  }
+
+  .about-logo img {
+    max-width: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-container {
+    padding: 1.5rem 0.9rem;
+  }
+
+  .about-title {
+    font-size: 1.45rem;
+  }
+
+  .about-description {
+    font-size: 0.9rem;
+  }
+
+  .about-cta {
+    padding: 0.65rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .about-logo img {
+    max-width: 120px;
+  }
+}
+
+/* Direct mobile layout support for current JSX structure */
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column-reverse;
+    gap: 1rem;
+    padding: 1.5rem 0.9rem;
+    text-align: center;
+  }
+
+  .about-text,
+  .about-logo {
+    max-width: 100%;
+    width: 100%;
+    padding-left: 0;
+  }
+
+  .about-title {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+
+  .about-description {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .about-logo img {
+    max-width: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-container {
+    padding: 1.5rem 0.9rem;
+    min-height: auto;
+  }
+
+  .about-title {
+    font-size: 1.35rem;
+  }
+
+  .about-description {
+    font-size: 0.88rem;
+  }
+
+  .about-logo img {
+    max-width: 140px;
+  }
+}
+/* Fade In Up (Phone) */
+@keyframes fadeInUpPhone {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
