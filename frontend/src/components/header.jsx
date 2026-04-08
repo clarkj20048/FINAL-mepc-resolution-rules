@@ -51,22 +51,29 @@ function Header() {
               ) : (
                 <li><Link to="/login">Admin Login</Link></li>
               )}
+              {authenticated && (
+                <>
+                  <li>
+                    <button
+                      type="button"
+                      className="header-link-button"
+                      onClick={() => setIsAddModalOpen(true)}
+                    >
+                      Add Resolution
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      type="button"
+                      className="header-link-button"
+                      onClick={logout}
+                    >
+                      Logout
+                    </button>
+                  </li>
+                </>
+              )}
             </ul>
-
-            {authenticated && (
-              <div className="admin-shortcuts">
-                <button
-                  type="button"
-                  className="header-link-button"
-                  onClick={() => setIsAddModalOpen(true)}
-                >
-                  Add Resolution
-                </button>
-                <button type="button" className="header-link-button" onClick={logout}>
-                  Logout
-                </button>
-              </div>
-            )}
           </div>
         </nav>
       </header>
@@ -80,7 +87,7 @@ function Header() {
               onClick={() => setIsAddModalOpen(false)}
               aria-label="Close add resolution form"
             >
-              ×
+              {'\u00D7'}
             </button>
             <ResolutionForm
               className="resolution-form-modal"
