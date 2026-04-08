@@ -676,115 +676,6 @@
   transform: translateY(-1px);
 }
 
-/* Pending Resolutions Section */
-.pending-resolutions-container {
-  width: 100%;
-  background-color: #ffffff;
-  border-radius: 12px;
-  padding: 1rem;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-  animation: fadeIn 0.4s ease;
-  margin-bottom: 0;
-  max-height: 360px;
-  overflow-y: auto;
-  border-left: 4px solid #f59e0b;
-  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-  animation-delay: 0.3s;
-  opacity: 1;
-}
-
-.pending-resolutions-container:hover {
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.14);
-  max-height: 380px;
-  transform: translateY(-1px);
-}
-
-.pending-resolutions-title {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #1a472a;
-  margin-bottom: 0.9rem;
-  text-align: center;
-}
-
-.pending-resolutions-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.pending-resolutions-table thead {
-  background-color: #f59e0b;
-}
-
-.pending-resolutions-table th {
-  padding: 0.7rem 0.8rem;
-  text-align: left;
-  font-weight: 600;
-  color: #ffffff;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-}
-
-.pending-resolutions-table tbody tr {
-  border-bottom: 1px solid #e8ebe8;
-  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-  opacity: 0;
-  animation: fadeInUp 0.4s ease-out forwards;
-}
-
-/* Staggered animation for pending resolutions */
-.pending-resolutions-table tbody tr:nth-child(1) { animation-delay: 0.05s; }
-.pending-resolutions-table tbody tr:nth-child(2) { animation-delay: 0.1s; }
-.pending-resolutions-table tbody tr:nth-child(3) { animation-delay: 0.15s; }
-.pending-resolutions-table tbody tr:nth-child(4) { animation-delay: 0.2s; }
-.pending-resolutions-table tbody tr:nth-child(5) { animation-delay: 0.25s; }
-
-.pending-resolutions-table tbody tr:hover {
-  background-color: #fffbeb;
-  transform: none;
-}
-
-.pending-resolutions-table td {
-  padding: 0.68rem 0.8rem;
-  color: #1a1a1a;
-  font-size: 0.86rem;
-}
-
-/* Accept Button */
-.accept-button {
-  padding: 0.35rem 0.65rem;
-  font-size: 0.8rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-  background-color: #4caf50;
-  color: #ffffff;
-  border: none;
-}
-
-.accept-button:hover {
-  background-color: #388e3c;
-  transform: translateY(-1px);
-}
-
-/* Reject Button */
-.reject-button {
-  padding: 0.35rem 0.65rem;
-  font-size: 0.8rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-  background-color: #f44336;
-  color: #ffffff;
-  border: none;
-}
-
-.reject-button:hover {
-  background-color: #d32f2f;
-  transform: translateY(-1px);
-}
-
 /* Animation Keyframes */
 
 /* Fade In */
@@ -852,7 +743,6 @@
   }
 
   .resolutions-table-container,
-  .pending-resolutions-container,
   .contact-messages-section,
   .data-table-container {
     padding: 1rem;
@@ -862,14 +752,12 @@
   }
 
   .resolutions-title,
-  .pending-resolutions-title,
   .contact-messages-section h2 {
     font-size: 1.2rem;
     margin-bottom: 1rem;
   }
 
   .resolutions-table,
-  .pending-resolutions-table,
   .contacts-table,
   .data-table {
     min-width: 640px;
@@ -877,8 +765,6 @@
 
   .resolutions-table th,
   .resolutions-table td,
-  .pending-resolutions-table th,
-  .pending-resolutions-table td,
   .contacts-table th,
   .contacts-table td,
   .data-table th,
@@ -895,8 +781,6 @@
   .view-link,
   .download-link,
   .delete-button,
-  .accept-button,
-  .reject-button,
   .view-message-button {
     font-size: 0.78rem;
     padding: 0.35rem 0.6rem;
@@ -913,7 +797,6 @@
   }
 
   .resolutions-title,
-  .pending-resolutions-title,
   .contact-messages-section h2 {
     font-size: 1.05rem;
   }
@@ -942,4 +825,3 @@
     transform: translateY(0);
   }
 }
-

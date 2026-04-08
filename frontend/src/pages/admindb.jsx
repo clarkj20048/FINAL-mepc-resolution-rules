@@ -16,7 +16,6 @@ function AdminDB() {
   useAuth();
   const [contacts, setContacts] = useState([]);
   const [resolutions, setResolutions] = useState([]);
-  const [pendingResolutions, setPendingResolutions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [selectedMessage, setSelectedMessage] = useState(null);
@@ -24,7 +23,6 @@ function AdminDB() {
   useEffect(() => {
     fetchContacts();
     fetchResolutions();
-    fetchPendingResolutions();
   }, []);
 
   useEffect(() => {
@@ -69,20 +67,6 @@ function AdminDB() {
     }
   };
 
-  const fetchPendingResolutions = async () => {
-    try {
-      const response = await fetch(apiUrl('/api/pending-resolutions'));
-      const data = await response.json();
-      if (response.ok) {
-        setPendingResolutions(Array.isArray(data) ? data : []);
-      } else {
-        console.error('Failed to fetch pending resolutions:', data.error || 'Unknown error');
-      }
-    } catch (fetchError) {
-      console.error('Error fetching pending resolutions:', fetchError);
-    }
-  };
-
   const deleteContact = async (id) => {
     if (!window.confirm('Are you sure you want to delete this message?')) {
       return;
@@ -118,54 +102,6 @@ function AdminDB() {
         setResolutions(resolutions.filter((resolution) => resolution.id !== id));
       } else {
         alert('Failed to delete resolution');
-      }
-    } catch (fetchError) {
-      console.error('Error:', fetchError);
-      alert('Error connecting to server');
-    }
-  };
-
-  const acceptResolution = async (id) => {
-    if (!window.confirm('Are you sure you want to accept this resolution?')) {
-      return;
-    }
-
-    try {
-      const response = await fetch(apiUrl(`/api/pending-resolutions/${id}/accept`), {
-        method: 'POST',
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        alert(data.message || 'Resolution accepted and added to resolutions!');
-        setPendingResolutions(pendingResolutions.filter((resolution) => resolution.id !== id));
-        fetchResolutions();
-      } else {
-        const data = await response.json();
-        alert(data.error || 'Failed to accept resolution');
-      }
-    } catch (fetchError) {
-      console.error('Error:', fetchError);
-      alert('Error connecting to server');
-    }
-  };
-
-  const rejectResolution = async (id) => {
-    if (!window.confirm('Are you sure you want to reject this resolution?')) {
-      return;
-    }
-
-    try {
-      const response = await fetch(apiUrl(`/api/pending-resolutions/${id}/reject`), {
-        method: 'POST',
-      });
-
-      if (response.ok) {
-        alert('Resolution rejected and removed from pending list.');
-        setPendingResolutions(pendingResolutions.filter((resolution) => resolution.id !== id));
-      } else {
-        const data = await response.json();
-        alert(data.error || 'Failed to reject resolution');
       }
     } catch (fetchError) {
       console.error('Error:', fetchError);
@@ -232,50 +168,6 @@ function AdminDB() {
             </div>
           ) : (
             <p className="no-results">No resolutions found.</p>
-          )}
-        </div>
-
-        <div className="pending-resolutions-container">
-          <h2 className="pending-resolutions-title">Pending Resolutions</h2>
-          {pendingResolutions.length > 0 ? (
-            <div className="table-wrapper">
-              <table className="pending-resolutions-table">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Date Docketed</th>
-                    <th>Date Published</th>
-                    <th>Date Added</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {pendingResolutions.map((resolution) => (
-                    <tr key={resolution.id}>
-                      <td>{resolution.id}</td>
-                      <td className="title-cell">{resolution.title}</td>
-                      <td>{formatDate(resolution.dateDocketed)}</td>
-                      <td>{formatDate(resolution.datePublished)}</td>
-                      <td>{formatDate(resolution.created_at)}</td>
-                      <td>
-                        <div className="action-buttons">
-                          {renderResolutionLink(resolution)}
-                          <button className="accept-button" onClick={() => acceptResolution(resolution.id)}>
-                            Accept
-                          </button>
-                          <button className="reject-button" onClick={() => rejectResolution(resolution.id)}>
-                            Reject
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          ) : (
-            <p className="no-results">No pending resolutions.</p>
           )}
         </div>
 
