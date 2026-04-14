@@ -1,5 +1,5 @@
 const devFallbackBaseUrl = 'http://localhost:3001';
-const prodFallbackBaseUrl = 'https://mpecresolution-ruleswebsite.onrender.com';
+const prodFallbackBaseUrl = 'https://mepc-resolution-rules-finalbackend.onrender.com';
 
 const fallbackBaseUrl = import.meta.env.DEV ? devFallbackBaseUrl : prodFallbackBaseUrl;
 
