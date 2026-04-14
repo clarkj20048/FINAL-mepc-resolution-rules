@@ -68,8 +68,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   const isAuthenticated = () => {
-    return user !== null;
+    return user !== null && user.role === 'admin';
   };
+
 
   const value = {
     user,
