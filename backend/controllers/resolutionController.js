@@ -134,6 +134,18 @@ const buildAutoTags = ({ title, pdfLink, dateDocketed, datePublished }) => {
 };
 
 const getNextSequence = async (name) => {
+  // Check if any resolutions exist
+  const resolutionCount = await Resolution.countDocuments();
+  
+  if (resolutionCount === 0) {
+    // Reset counter to 0 if no resolutions exist
+    await Counter.findOneAndUpdate(
+      { name },
+      { seq: 0 },
+      { upsert: true }
+    );
+  }
+  
   const counter = await Counter.findOneAndUpdate(
     { name },
     { $inc: { seq: 1 } },
@@ -142,6 +154,7 @@ const getNextSequence = async (name) => {
 
   return counter.seq;
 };
+
 
 const syncResolutionSequence = async () => {
   const resolutions = await Resolution.find().sort({ resolutionId: 1, createdAt: 1 });
