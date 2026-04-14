@@ -16,13 +16,27 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check for stored user session
+    // Check for stored user session with expiry validation
     const storedUser = localStorage.getItem('mepc_user');
     if (storedUser) {
-      setUser(JSON.parse(storedUser));
+      try {
+        const userData = JSON.parse(storedUser);
+        // Check expiry and validity
+        if (userData.expiry && Date.now() > userData.expiry) {
+          console.log('Session expired, auto-logout');
+          localStorage.removeItem('mepc_user');
+        } else if (userData.id && userData.email && userData.role === 'admin') {
+          setUser(userData);
+        } else {
+          localStorage.removeItem('mepc_user');
+        }
+      } catch (e) {
+        localStorage.removeItem('mepc_user');
+      }
     }
     setLoading(false);
   }, []);
+
 
   const login = async (email, password) => {
     try {
@@ -52,9 +66,14 @@ export const AuthProvider = ({ children }) => {
         throw new Error(data?.error || `Login failed (HTTP ${response.status})`);
       }
 
-      // Store user in state and localStorage
-      setUser(data?.user || null);
-      localStorage.setItem('mepc_user', JSON.stringify(data?.user || null));
+      // Store user in state and localStorage with expiry (24h)
+      const userWithExpiry = {
+        ...data.user,
+        expiry: Date.now() + 24 * 60 * 60 * 1000  // 24 hours
+      };
+      setUser(userWithExpiry);
+      localStorage.setItem('mepc_user', JSON.stringify(userWithExpiry));
+
 
       return { success: true, message: data?.message || 'Login successful' };
     } catch (error) {
