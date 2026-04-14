@@ -240,12 +240,13 @@ const buildResolutionPayload = (body = {}, fallbackStatus = 'approved') => {
 
 const getResolutions = async (req, res) => {
   try {
-    const resolutions = await Resolution.find({ status: { $ne: 'pending' } }).sort({ resolutionId: 1, createdAt: 1 });
+    const resolutions = await Resolution.find({ status: { $ne: 'pending' } }).sort({ resolutionId: -1, createdAt: -1 });
     return res.json(resolutions.map(formatResolutionResponse));
   } catch (error) {
     return res.status(500).json({ error: 'Failed to fetch resolutions' });
   }
 };
+
 
 const getResolutionById = async (req, res) => {
   const lookup = buildResolutionLookup(req.params.id);
@@ -336,12 +337,13 @@ const deleteResolution = async (req, res) => {
 
 const getPendingResolutions = async (req, res) => {
   try {
-    const resolutions = await Resolution.find({ status: 'pending' }).sort({ resolutionId: 1, createdAt: 1 });
+    const resolutions = await Resolution.find({ status: 'pending' }).sort({ resolutionId: -1, createdAt: -1 });
     return res.json(resolutions.map(formatResolutionResponse));
   } catch (error) {
     return res.status(500).json({ error: 'Failed to fetch pending resolutions' });
   }
 };
+
 
 const createPendingResolution = async (req, res) => {
   try {
@@ -418,6 +420,7 @@ const getRecentlyViewed = async (req, res) => {
     return res.status(500).json({ error: 'Failed to fetch recently viewed resolutions' });
   }
 };
+
 
 const addRecentlyViewed = async (req, res) => {
   try {

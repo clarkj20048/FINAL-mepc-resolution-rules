@@ -6,6 +6,6 @@
 - [ ] **Step 3**: Provide deployment environment variable instructions
 - [ ] **Step 4**: Test changes and complete task
 
-**Current Status**: Resolution ID sequencing fixed. Now restarts from 1 when database is empty. Ready for testing.
+**Current Status**: Display order fixed - newest first on home, adminDB, pending. All tasks complete.
 
 
